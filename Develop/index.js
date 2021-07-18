@@ -1,17 +1,18 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
+
+const generatePage = require('./src/page-template');
+const { writeFile, copyFile } = require('./utils/generate-site');
+
 // const generate = require('./utils/generateMarkdown.js');
 // const path = require('path');
 
 // TODO: Create an array of questions for user input
-const promptProject = readMeData => {
-
-    // If there's no 'projects' array property, create one
-    if (!portfolioData.projects) {
-        portfolioData.projects = [];
-    }
-
+const promptUser = readMeData => {
+    console.log(`
+   Create a new README.md!
+    `);
     return inquirer.prompt([
         {
             type: "input",
@@ -127,7 +128,7 @@ const promptProject = readMeData => {
                 "GNU Public v3.0"
             ]
         }
-    
+
     ])
 };
 
