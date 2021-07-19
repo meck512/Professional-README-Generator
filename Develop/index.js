@@ -5,7 +5,6 @@ const fs = require("fs");
 const generatePage = require('./src/page-template');
 const { writeFile, copyFile } = require('./utils/generate-site');
 
-// const generate = require('./utils/generateMarkdown.js');
 // const path = require('path');
 
 // TODO: Create an array of questions for user input
@@ -120,8 +119,8 @@ const promptUser = readMeData => {
         },
         {
             type: "checkbox",
-            message: "Licensing Options",
             name: "license",
+            message: "Licensing Options",
             choices: [
                 "MIT",
                 "Apache2.0",
@@ -134,10 +133,14 @@ const promptUser = readMeData => {
 
 // TODO: Create a function to write README file
 
+// fs.writeFile('README.md', generatePage(name, github), err => {
+//     if (err) throw err;
 
 
 // TODO: Create a function to initialize app
-function init() { }
+function init() {
+    inquirer.prompt()
+ };
 
 // Function call to initialize app
 init();
