@@ -1,146 +1,68 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generateMarkdown = require('./utils/generateMarkdown');
 
-const generatePage = require('./src/page-template');
-const { writeFile, copyFile } = require('./utils/generate-site');
+const promptUser = [
+    {
+        type: "input",
+        name: "title",
+        message: "Enter Project Title",
+    },
+    {
+        type: "input",
+        name: "description",
+        message: "Enter Project Description",
+    },
+    {
+        type: "input",
+        name: "installation",
+        message: "Enter Project Installation Instructions",
+    },
+    {
+        type: "input",
+        name: "usage",
+        message: "Enter Usage Information",
+    },
+    {
+        type: "input",
+        name: "contribution",
+        message: "Enter Your Projects Contribution Guidelines",
+    },
+    {
+        type: "input",
+        name: "test",
+        message: "Enter Test Instructions",
+    },
+    {
+        type: "checkbox",
+        message: "Licensing Options",
+        name: "license",
+        choices: [
+            "MIT",
+            "Apache2.0",
+            "GNU Public v3.0"
+        ]
+    },
+    {
+        type: "input",
+        name: "username",
+        message: "Enter Github Username",
 
-// const path = require('path');
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Enter Email Address",
 
-// TODO: Create an array of questions for user input
-const promptUser = readMeData => {
-    console.log(`
-   Create a new README.md!
-    `);
-    return inquirer.prompt([
-        {
-            type: "input",
-            name: "title",
-            message: "Enter Project Title",
-            validate: titleInput => {
-                if (titleInput) {
-                    return true;
-                } else {
-                    console.log('Please Enter Title');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
-            name: "description",
-            message: "Enter Project Description",
-            validate: descriptionInput => {
-                if (descriptionInput) {
-                    return true;
-                } else {
-                    console.log('Please Enter Description');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
-            name: "installation",
-            message: "Enter Project Installation Instructions",
-            validate: installInput => {
-                if (installInput) {
-                    return true;
-                } else {
-                    console.log('Please Enter Installation Instructions');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
-            name: "usage",
-            message: "Enter Usage Information",
-            validate: usageInput => {
-                if (usageInput) {
-                    return true;
-                } else {
-                    console.log('Please Enter Usage Information');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
-            name: "contribution",
-            message: "Enter Your Projects Contribution Guidelines",
-            validate: contributionInput => {
-                if (contributionInput) {
-                    return true;
-                } else {
-                    console.log('Please Enter Contribution Guidelines');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
-            name: "test",
-            message: "Enter Test Instructions",
-            validate: testInput => {
-                if (testInput) {
-                    return true;
-                } else {
-                    console.log('Please Enter Test Instructions');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
-            name: "username",
-            message: "Enter Github Username",
-            validate: userNameInput => {
-                if (userNameInput) {
-                    return true;
-                } else {
-                    console.log('Please Enter UserName');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "Enter Email Address",
-            validate: emailInput => {
-                if (emailInput) {
-                    return true;
-                } else {
-                    console.log('Please Enter Email Address');
-                    return false;
-                }
-            }
-        },
-        {
-            type: "checkbox",
-            name: "license",
-            message: "Licensing Options",
-            choices: [
-                "MIT",
-                "Apache2.0",
-                "GNU Public v3.0"
-            ]
-        }
+    }
+];
 
-    ])
-};
-
-// TODO: Create a function to write README file
-
-// fs.writeFile('README.md', generatePage(name, github), err => {
-//     if (err) throw err;
-
-
-// TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt()
- };
+    inquirer.prompt(promptUser).then((data) => {
+        fs.writeFile('newREADME.md', generateMarkdown(data), (err) => err ? console.error(err) : console.log("It Worked!"))
+    })
+};
 
 // Function call to initialize app
 init();
