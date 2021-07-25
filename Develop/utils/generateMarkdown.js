@@ -23,11 +23,12 @@ ${data.contribution}
 ## Test Instructions
 ${data.test}
 ## Questions
-<p>Contact Information</p>
-### GitHub Profile
-[GitHub Profile](http://github.com/${data.username})
-### Email address
-[Email Address](${data.email})`
+<p>Contact Me</p>
+### GitHub
+GitHub:
+http://github.com/${data.username}
+### Email
+${data.email}`
 }
 
 module.exports = generateMarkdown;
