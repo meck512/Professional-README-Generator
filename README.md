@@ -14,6 +14,8 @@ This was my first time as a developer using Node.js, and I am happy with how it 
 After cloning the repository, in the terminal type: “nmp install inquirer” (enter) then “npm install fs” (enter)
 ## Usage Information
 To run the application type “node index.js” (enter) then the command line will prompt you with a few questions based on your project, input the info for your project and once completed check out your newREADME.md file that was created. 
+
+
 <img src="Develop\assets\images\customMD.PNG"/>
 ## Questions
 <p>Contact Me</p>
